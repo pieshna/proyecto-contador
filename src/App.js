@@ -1,23 +1,53 @@
-import logo from './logo.svg';
+import { useState } from 'react';
 import './App.css';
 
 function App() {
+  const [numero, setNumero] = useState(0);
+  const [color, setColor] = useState('black');
   return (
     <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
+      <div className="contenedor">
+        <p>Contador:</p>
+        <p style={{ color }}> {numero}</p>
+        <button
+          className="btn decrementar"
+          onClick={() => {
+            setNumero(numero - 1);
+            if (numero <= 0) {
+              setColor('red');
+            } else if (numero === 1) {
+              setColor('black');
+            }
+          }}
         >
-          Learn React
-        </a>
-      </header>
+          {' '}
+          Disminuir{' '}
+        </button>
+        <button
+          className="btn reset"
+          onClick={() => {
+            setNumero(numero - numero);
+            setColor('black');
+          }}
+        >
+          {' '}
+          Reset{' '}
+        </button>
+        <button
+          className="btn aumentar"
+          onClick={() => {
+            setNumero(numero + 1);
+            if (numero >= 0) {
+              setColor('green');
+            } else if (numero === -1) {
+              setColor('black');
+            }
+          }}
+        >
+          {' '}
+          Aumentar{' '}
+        </button>
+      </div>
     </div>
   );
 }
